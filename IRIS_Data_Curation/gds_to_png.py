@@ -372,7 +372,7 @@ if __name__ == '__main__':
         # Catch it if it's not the case, so I can find the test case and understand what it even means to have two top cells.
         assert len(cells) == 1
 
-        '''if True:
+        if True:
             # Export the GDS as PNG files
             export_png(cells[0], interactive=args.interactive)
 
@@ -386,7 +386,7 @@ if __name__ == '__main__':
 
         if True:
             # Export the GDS as logic map
-            export_logic_label(cells[0], interactive=args.interactive)'''
+            export_logic_label(cells[0], interactive=args.interactive)
 
         if True:
             # Export the GDS as one-class-per-image labels

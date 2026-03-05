@@ -225,9 +225,9 @@ if __name__ == "__main__":
                 print("Max Location:", max_loc)
                 composite_overlay = np.zeros(corrected_image.shape, np.uint8)
                 composite_overlay[max_loc[1]:max_loc[1] + gds_png.shape[0], max_loc[0]: max_loc[0] + gds_png.shape[1]] = gds_png
-                #cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_corrected_2.png', corrected_image)
+                cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_corrected_2.png', corrected_image)
                 blended = cv2.addWeighted(corrected_image, 1.0, composite_overlay, 0.5, 0)
-                #cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_blended_2.png', blended)
+                cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_blended_2.png', blended)
                 max_location_entry['max_location'] = max_loc
             
             else:
@@ -239,11 +239,9 @@ if __name__ == "__main__":
                 print("Max Location:", max_loc)
                 composite_overlay = np.zeros(corrected_image_corrected.shape, np.uint8)
                 composite_overlay[max_loc[1]:max_loc[1] + gds_png.shape[0], max_loc[0]: max_loc[0] + gds_png.shape[1]] = gds_png
-                #cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_corrected_2.png', corrected_image_corrected)
+                cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_corrected_2.png', corrected_image_corrected)
                 blended = cv2.addWeighted(corrected_image_corrected, 1.0, composite_overlay, 0.5, 0)
-                #max_loc = (0, 0)
-                #print("Max Location:", max_loc)
-                #cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_blended_2.png', blended)
+                cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_blended_2.png', blended)
                 max_location_entry['max_location'] = max_loc
 
             max_location_json['functional_blocks'].append(max_location_entry)
@@ -262,7 +260,6 @@ if __name__ == "__main__":
             else:
                 corrected_image_rgb = cv2.cvtColor(corrected_image_corrected, cv2.COLOR_GRAY2BGR)
                 label_overlay = np.zeros(corrected_image_rgb.shape, np.uint8)
-                #label_overlay = corrected_gds_label
                 label_overlay[max_loc[1]:max_loc[1] + gds_label_image.shape[0], max_loc[0]: max_loc[0] + gds_label_image.shape[1], :] = gds_label_image
                 corrected_image = corrected_image_corrected
             
@@ -341,7 +338,7 @@ if __name__ == "__main__":
                             cv2.waitKey(0)
 
             # dump the data into pickle files for consumption by downstream CNN pipeline
-            '''print(f'max_x: {max_x}, max_y: {max_y}')
+            print(f'max_x: {max_x}, max_y: {max_y}')
             for i in range(len(reduced_types())):
                 print(f"{reduced_types()[i]}: {entry['labels'].count(i)}")
             with open(f'imaging/dataset_extraction/cell_dataset/{name}_{layer}{psi}_cell_1.pkl', 'wb') as f:
@@ -355,7 +352,7 @@ if __name__ == "__main__":
                 pickle.dump(meta, f)
 
             # Quality check the alignment
-            blended_rect = cv2.addWeighted(corrected_image_rgb, 1.0, cell_overlay, 1, 0)'''
+            blended_rect = cv2.addWeighted(corrected_image_rgb, 1.0, cell_overlay, 1, 0)
 
             #cv2.imshow("Corrected Image", corrected_image)
             #cv2.waitKey(0)
