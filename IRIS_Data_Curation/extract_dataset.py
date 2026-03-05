@@ -226,6 +226,7 @@ if __name__ == "__main__":
                 composite_overlay = np.zeros(corrected_image.shape, np.uint8)
                 composite_overlay[max_loc[1]:max_loc[1] + gds_png.shape[0], max_loc[0]: max_loc[0] + gds_png.shape[1]] = gds_png
                 cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_corrected_2.png', corrected_image)
+                cv2.imwrite(f'imaging/data_cropped_images/{name}_cropped.png', corrected_image)
                 blended = cv2.addWeighted(corrected_image, 1.0, composite_overlay, 0.5, 0)
                 cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_blended_2.png', blended)
                 max_location_entry['max_location'] = max_loc
@@ -240,6 +241,7 @@ if __name__ == "__main__":
                 composite_overlay = np.zeros(corrected_image_corrected.shape, np.uint8)
                 composite_overlay[max_loc[1]:max_loc[1] + gds_png.shape[0], max_loc[0]: max_loc[0] + gds_png.shape[1]] = gds_png
                 cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_corrected_2.png', corrected_image_corrected)
+                cv2.imwrite(f'imaging/data_cropped_images/{name}_cropped.png', corrected_image_corrected)
                 blended = cv2.addWeighted(corrected_image_corrected, 1.0, composite_overlay, 0.5, 0)
                 cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_blended_2.png', blended)
                 max_location_entry['max_location'] = max_loc
@@ -266,7 +268,8 @@ if __name__ == "__main__":
             #label_overlay = corrected_gds_label
             #label_overlay[max_loc[1]:max_loc[1] + gds_label_image.shape[0], max_loc[0]: max_loc[0] + gds_label_image.shape[1], :] = gds_label_image
             label_blended = cv2.addWeighted(corrected_image_rgb, 1.0, label_overlay, 0.3, 0)  
-            #cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_aligned_2.png', label_blended)
+            cv2.imwrite(f'imaging/dataset_extraction/{name}_{layer}_aligned_2.png', label_blended)
+            
             
             #cv2.imshow("Label_Blended", label_blended)
             #cv2.waitKey(0)
